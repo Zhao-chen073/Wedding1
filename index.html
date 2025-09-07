@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱的纪念册 | 婚礼彩蛋</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义主题 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E8C3A2',
+                        secondary: '#6A4C38',
+                        accent: '#F8E9D6',
+                    },
+                    fontFamily: {
+                        love: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .egg-card {
+                @apply bg-white/80 rounded-xl p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+    </style>
+</head>
+<body class="bg-accent min-h-screen">
+    <!-- 顶部装饰 -->
+    <div class="w-full h-16 bg-primary/30 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <i class="fa fa-heart absolute text-secondary" style="top: 10%; left: 5%; font-size: 1.5rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 30%; left: 20%; font-size: 1rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 20%; left: 35%; font-size: 0.8rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 40%; left: 50%; font-size: 1.2rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 15%; left: 65%; font-size: 1rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 30%; left: 80%; font-size: 1.5rem;"></i>
+            <i class="fa fa-heart absolute text-secondary" style="top: 25%; left: 90%; font-size: 0.9rem;"></i>
+        </div>
+    </div>
+
+    <!-- 标题区域 -->
+    <header class="container mx-auto px-4 py-8 text-center">
+        <h1 class="font-love text-[clamp(2.5rem,5vw,4rem)] text-secondary mb-2">爱的纪念册</h1>
+        <p class="text-secondary/80 text-lg max-w-2xl mx-auto">感谢您见证我们的幸福时刻，扫码探索属于我们的小秘密</p>
+    </header>
+
+    <!-- 彩蛋选择区 -->
+    <section class="container mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 彩蛋1：成长轨迹 -->
+            <div class="egg-card cursor-pointer" onclick="showVideo('growth')">
+                <div class="aspect-video bg-secondary/10 rounded-lg overflow-hidden mb-3 relative">
+                    <i class="fa fa-film absolute inset-0 m-auto text-5xl text-secondary/50"></i>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-center text-sm">
+                        点击播放
+                    </div>
+                </div>
+                <h3 class="font-love text-xl text-secondary mb-1">成长轨迹</h3>
+                <p class="text-sm text-gray-600">从青涩到成熟，我们走过的岁月</p>
+            </div>
+
+            <!-- 彩蛋2：秘密告白 -->
+            <div class="egg-card cursor-pointer" onclick="showVideo('confession')">
+                <div class="aspect-video bg-secondary/10 rounded-lg overflow-hidden mb-3 relative">
+                    <i class="fa fa-heart absolute inset-0 m-auto text-5xl text-secondary/50"></i>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-center text-sm">
+                        点击播放
+                    </div>
+                </div>
+                <h3 class="font-love text-xl text-secondary mb-1">秘密告白</h3>
+                <p class="text-sm text-gray-600">那些未曾说出口的心底话</p>
+            </div>
+
+            <!-- 彩蛋3：亲友祝福 -->
+            <div class="egg-card cursor-pointer" onclick="showVideo('blessings')">
+                <div class="aspect-video bg-secondary/10 rounded-lg overflow-hidden mb-3 relative">
+                    <i class="fa fa-users absolute inset-0 m-auto text-5xl text-secondary/50"></i>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-center text-sm">
+                        点击播放
+                    </div>
+                </div>
+                <h3 class="font-love text-xl text-secondary mb-1">亲友祝福</h3>
+                <p class="text-sm text-gray-600">来自挚爱亲朋的真挚祝福</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 祝福留言区 -->
+    <section class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-white/80 rounded-xl p-6 shadow-lg">
+            <h2 class="font-love text-2xl text-secondary mb-4 text-center">留下您的祝福</h2>
+            
+            <form id="blessingForm" class="mb-6">
+                <div class="mb-4">
+                    <input type="text" placeholder="您的姓名" id="name" 
+                        class="w-full px-4 py-2 border border-primary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <textarea placeholder="写下您的祝福..." id="message" rows="3"
+                        class="w-full px-4 py-2 border border-primary/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-lg transition-colors duration-300">
+                    提交祝福
+                </button>
+            </form>
+            
+            <div id="blessingsList" class="max-h-64 overflow-y-auto space-y-3">
+                <!-- 祝福会动态添加到这里 -->
+                <div class="p-3 bg-accent/50 rounded-lg">
+                    <p class="font-medium text-secondary">张先生</p>
+                    <p class="text-sm">祝新人永结同心，百年好合！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频播放模态框 -->
+    <div id="videoModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full">
+            <button id="closeModal" class="absolute -top-12 right-0 text-white text-2xl">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                <video id="mainVideo" controls class="w-full h-full object-contain">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <h3 id="videoTitle" class="text-white text-center mt-4 font-love text-2xl"></h3>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="mt-12 py-6 bg-secondary/10 text-center text-secondary/70 text-sm">
+        <p>感谢您的到来 · 见证我们的幸福时刻</p>
+        <p class="mt-1">© 2025.10 爱的纪念册</p>
+    </footer>
+
+    <script>
+        // 视频数据 - 替换为你们自己的视频URL
+        const videos = {
+            growth: {
+                title: "成长轨迹",
+                url: "https://b23.tv/kxPq3cZ" // 替换为实际视频URL
+            },
+            confession: {
+                title: "秘密告白",
+                url: "https://b23.tv/kxPq3cZ" // 替换为实际视频URL
+            },
+            blessings: {
+                title: "亲友祝福",
+                url: "https://b23.tv/kxPq3cZ" // 替换为实际视频URL
+            }
+        };
+
+        // DOM元素
+        const videoModal = document.getElementById('videoModal');
+        const mainVideo = document.getElementById('mainVideo');
+        const videoTitle = document.getElementById('videoTitle');
+        const closeModal = document.getElementById('closeModal');
+        const blessingForm = document.getElementById('blessingForm');
+        const blessingsList = document.getElementById('blessingsList');
+
+        // 显示视频
+        function showVideo(type) {
+            const video = videos[type];
+            if (video) {
+                mainVideo.src = video.url;
+                videoTitle.textContent = video.title;
+                videoModal.classList.remove('hidden');
+                mainVideo.play();
+                
+                // 阻止背景滚动
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // 关闭视频模态框
+        closeModal.addEventListener('click', () => {
+            videoModal.classList.add('hidden');
+            mainVideo.pause();
+            document.body.style.overflow = '';
+        });
+
+        // 点击模态框外部关闭
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal.click();
+            }
+        });
+
+        // 提交祝福
+        blessingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (name && message) {
+                // 创建祝福元素
+                const blessingEl = document.createElement('div');
+                blessingEl.className = 'p-3 bg-accent/50 rounded-lg';
+                blessingEl.innerHTML = `
+                    <p class="font-medium text-secondary">${name}</p>
+                    <p class="text-sm">${message}</p>
+                `;
+                
+                // 添加到列表顶部
+                blessingsList.insertBefore(blessingEl, blessingsList.firstChild);
+                
+                // 清空表单
+                blessingForm.reset();
+            }
+        });
+    </script>
+</body>
+</html>
+    
